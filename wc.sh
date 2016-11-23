@@ -8,18 +8,17 @@ awk 'BEGIN {
 {
     i = 0;
     nbWords = 0;
+    letter=0;
+    
     while (i < FNR) {
         nbWords += NF;
+        letter +=length;
         i++;
-    }
-
-    for (word = 1; word <= NF; word++) {
-        dic[$word]++;
     }
 
 }
 
-# End printf "There are " nbWords " words and " FNR " lines.\n" ;
+# End
 END {
     getline < "name.txt";
 
@@ -28,7 +27,7 @@ END {
     else if ("'$2'" == "-s")
         printf "There are "  FNR " lines.\n";
     else if ("'$2'" == "-h")
-        printf "\n";
+        printf "There are "  letter " lines.\n";
 
 
 }' $1
